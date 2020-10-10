@@ -38,19 +38,25 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+            $this->memberRoute();
 
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
+            $this->futuresRoute();
+
+
+//            Route::prefix('api')
+//                ->middleware('api')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/api.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/web.php'));
         });
     }
 
     private function mergeDomain(?string $subDomain)
     {
+        $subDomain = strtoupper($subDomain);
         return env("{$subDomain}_SUBDOMAIN") . env('SESSION_DOMAIN');
     }
 
@@ -64,7 +70,10 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function futuresRoute()
     {
-
+        Route::domain($this->mergeDomain('futures'))
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/futures.php'));
     }
 
     /**

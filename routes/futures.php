@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd('member');
+    dd('futures');
     return view('welcome');
 });
