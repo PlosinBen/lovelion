@@ -1,15 +1,12 @@
 @extends('basic')
 
-@section('Nav', '')
-@section('Footer', '')
-
 @section('StyleSheet')
     <link rel="stylesheet" href="{{ asset('res/bootstrap-social-5.1.1.min.css') }}">
 @endsection
 
 @section('Content')
     <div class="row justify-content-center">
-        <div class="col-10 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3">
             <div class="card mt-5">
                 <div class="card-header">
                     <h4 class="font-weight-light text-center my-1">Login</h4>

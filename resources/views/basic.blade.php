@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @section('Meta')
-
-    @show
+    @yield('Meta')
 
     <title>{{ env('APP_NAME') }}</title>
 
@@ -18,8 +16,8 @@
 <body>
 
 <section class="bg-light">
-    <div class="container">
-        <nav class="navbar navbar-light navbar-expand-lg">
+    <div class="container-fluid">
+        <nav class="navbar navbar-light navbar-expand-md">
             <div>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,19 +37,23 @@
     </div>
 </section>
 
+@yield('PreContent')
 <section id="content" class="container-fluid">
     @yield('Content')
 </section>
+@yield('AfterContent')
 
-<section id="footer" class="bg-dark">
-    @section('Footer')
+@section('Footer')
+    <section id="footer" class="bg-dark">
         Footer
-    @show
-</section>
+    </section>
+@show
+
+</body>
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('res/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('res/bootstrap/bootstrap-4.6.2.min.js') }}"></script>
 @yield('Script')
-</body>
+
 </html>
