@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <a href="{{ route('member.login.social', 'facebook') }}" class="btn btn-facebook btn-block">
-                        <i class="fab fa-facebook-f fa-fw"></i>
+                        <i class="fab fa-facebook-f fa-tw"></i>
                         Sign in with Facebook
                     </a>
                 </div>

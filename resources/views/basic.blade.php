@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('res/bootstrap/bootstrap-4.6.2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('res/fontawesome-5.10.2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('StyleSheet')
 </head>
