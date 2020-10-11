@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function login()
     {
-        return view('member.login');
+        return $this->view('member.login');
     }
 
     public function loginSocial(string $provider, Request $request)

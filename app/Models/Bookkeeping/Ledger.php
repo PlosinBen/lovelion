@@ -12,7 +12,13 @@ class Ledger extends Model
     protected $table = 'ledger';
 
     protected $fillable = [
+        'user_id',
         'name',
         'currency_code'
     ];
+
+    public function LedgerRecord()
+    {
+        return $this->hasMany(LedgerRecord::class);
+    }
 }

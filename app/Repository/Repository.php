@@ -87,9 +87,9 @@ class Repository
         return $query;
     }
 
-    public function insert(SupportCollection $columns): Model
+    public function insert($columns): Model
     {
-        return $this->Model->create($columns->toArray());
+        return $this->Model->create($columns);
     }
 
     /**

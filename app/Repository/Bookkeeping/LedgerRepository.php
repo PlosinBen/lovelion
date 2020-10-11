@@ -11,4 +11,13 @@ class LedgerRepository extends Repository
     {
         $this->Model = $ledger;
     }
+
+    public function create($userId, $name, $currencyCode)
+    {
+        return $this->insert([
+            'user_id' => $userId,
+            'name' => $name,
+            'currency_code' => $currencyCode,
+        ]);
+    }
 }

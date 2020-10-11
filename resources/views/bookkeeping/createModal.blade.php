@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label>幣別</label>
-                        <select name="currency" class="form-control">
+                        <select name="currency_code" class="form-control">
                             @foreach(config('currency') as $code => $conf)
                                 <option value="{{ $code }}">{{ $conf['name'] }}({{ $code  }})</option>
                             @endforeach

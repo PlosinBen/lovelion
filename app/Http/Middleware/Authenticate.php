@@ -17,7 +17,7 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             $routeName = app('router')->getRoutes()->match($request)->getName();
 
-            return route('member.login.index', [
+            return route('login.index', [
                 'path' => $routeName
             ]);
         }

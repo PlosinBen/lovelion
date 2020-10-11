@@ -13,7 +13,7 @@
                         <h4 class="font-weight-light text-center my-1">Login</h4>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('member.login.social', [ 'provider' => 'facebook', 'path' => request()->get('path') ]) }}" class="btn btn-facebook btn-block">
+                        <a href="{{ route('login.social', [ 'provider' => 'facebook', 'path' => request()->get('path') ]) }}" class="btn btn-facebook btn-block">
                             <i class="fab fa-facebook-f fa-tw"></i>
                             Sign in with Facebook
                         </a>
@@ -23,3 +23,5 @@
         </div>
     </section>
 @endsection
+
+@section('Footer', '')

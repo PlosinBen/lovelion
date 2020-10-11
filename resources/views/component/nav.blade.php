@@ -54,6 +54,6 @@
             </div>
         </div>
     @else
-        <a href="{{ route('member.login.index') }}">Sign In</a>
+        <a href="{{ route('login.index') }}">Sign In</a>
     @endif
 </div>
