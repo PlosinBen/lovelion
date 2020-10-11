@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Ledger;
+namespace App\Http\Controllers\Bookkeeping;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,11 +17,13 @@ class IndexController extends Controller
         $this->pushBreadcrumbsNode('Create');
 
 
-        return $this->view('ledger.create');
+        return $this->view('bookkeeping.create');
     }
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $columns = $request->all();
+
+
     }
 }

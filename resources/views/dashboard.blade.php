@@ -6,7 +6,7 @@
     <section class="container">
         <h5 class="h3">
             近期帳本清單
-            <a id="createLedger" href="{{ route('ledger.create') }}" class="btn btn-sm btn-success">新增</a>
+            <a id="createLedger" href="{{ route('bookkeeping.create') }}" class="btn btn-sm btn-success">新增</a>
         </h5>
 
         <div class="row">
@@ -42,7 +42,7 @@
 @endsection
 
 @section('AfterContent')
-    @include('ledger.createModal')
+    @include('bookkeeping.createModal')
 @endsection
 
 @section('Script')

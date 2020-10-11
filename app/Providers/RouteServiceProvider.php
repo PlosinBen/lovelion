@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->authRoute();
 
             $this->memberRoute();
-            $this->ledgerRoute();
+            $this->bookkeepingRoute();
             //$this->futuresRoute();
 
 
@@ -65,19 +65,19 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function memberRoute()
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'auth'])
             ->namespace("{$this->namespace}\Member")
             ->as('member.')
             ->group(base_path("routes/member.php"));
     }
 
-    protected function ledgerRoute()
+    protected function bookkeepingRoute()
     {
         Route::middleware(['web', 'auth'])
-            ->namespace("{$this->namespace}\Ledger")
-            ->as('ledger.')
-            ->prefix('ledger')
-            ->group(base_path("routes/ledger.php"));
+            ->namespace("{$this->namespace}\Bookkeeping")
+            ->as('bookkeeping.')
+            ->prefix('bookkeeping')
+            ->group(base_path("routes/bookkeeping.php"));
     }
 
     protected function futuresRoute()

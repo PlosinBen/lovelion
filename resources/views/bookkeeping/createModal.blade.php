@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="createLedgerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{ route('ledger.store') }}" method="POST">
+        <form action="{{ route('bookkeeping.store') }}" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">新增帳本</h5>
