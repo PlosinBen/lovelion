@@ -9,24 +9,37 @@ use Illuminate\Validation\Rule;
 
 class LedgerController extends Controller
 {
-    public function __construct()
+    private BookkeepingService $BookkeepingService;
+
+    public function __construct(BookkeepingService $bookkeepingService)
     {
+        $this->BookkeepingService = $bookkeepingService;
+
         $this->pushBreadcrumbsNode('Ledger');
     }
 
-    public function show($id, BookkeepingService $bookkeepingService)
+    public function index()
     {
-        $ledger = $bookkeepingService->getLedger($id);
+
+    }
+
+    public function show($id)
+    {
+        $ledger = $this->BookkeepingService->getLedger($id);
+
+        if ($ledger === null) {
+            return redirect()->route('ledger.index');
+        }
 
         return $this
             ->pushBreadcrumbsNode("{$ledger->name}")
             ->view('bookkeeping.ledger.show', [
                 'ledger' => $ledger,
-                'ledgerRecords' => $bookkeepingService->getLedgerRecordList($id),
+                'ledgerRecords' => $this->BookkeepingService->getLedgerRecordList($id),
             ]);
     }
 
-    public function store(RequestValidator $requestValidator, BookkeepingService $bookkeepingService)
+    public function store(RequestValidator $requestValidator)
     {
         $columns = $requestValidator
             ->rule([
@@ -47,7 +60,7 @@ class LedgerController extends Controller
 
         $user = auth()->user();
 
-        $bookkeepingService->createLedger($user->id, $columns);
+        $this->BookkeepingService->createLedger($user->id, $columns);
 
         return redirect()->route('dashboard');
     }

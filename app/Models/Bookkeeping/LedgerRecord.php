@@ -20,4 +20,20 @@ class LedgerRecord extends Model
     ];
 
     protected $dates = ['date'];
+
+    public function Ledger()
+    {
+        return $this->belongsTo(Ledger::class);
+    }
+
+    public function LedgerRecordDetail()
+    {
+        return $this->hasMany(LedgerRecordDetail::class);
+    }
+
+    public function LedgerRecordAttach()
+    {
+        return $this->hasMany(LedgerRecordAttach::class);
+    }
+
 }

@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         //ledger
         \App\Models\Bookkeeping\Ledger::factory(2)->create();
         \App\Models\Bookkeeping\LedgerRecord::factory(30)->create();
-
+        \App\Models\Bookkeeping\LedgerRecordDetail::factory(4)->create();
+        \App\Models\Bookkeeping\LedgerRecordAttach::factory(2)->create();
 
     }
 }

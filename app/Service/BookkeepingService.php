@@ -17,6 +17,22 @@ class BookkeepingService
         $this->LedgerRecordRepository = $ledgerRecordRepository;
     }
 
+    public function createLedger($userId, Collection $columns)
+    {
+        $this->LedgerRepository
+            ->create(
+                $userId,
+                $columns->get('name'),
+                $columns->get('currency_code')
+            );
+    }
+
+    public function getLedger($id)
+    {
+        return $this->LedgerRepository
+            ->find($id);
+    }
+
     public function getLedgerAll($filter = [])
     {
         return $this->LedgerRepository
@@ -38,19 +54,12 @@ class BookkeepingService
             ->fetchPagination($filter);
     }
 
-    public function createLedger($userId, Collection $columns)
+    public function getLedgerRecord($id)
     {
-        $this->LedgerRepository
-            ->create(
-                $userId,
-                $columns->get('name'),
-                $columns->get('currency_code')
-            );
-    }
-
-    public function getLedger($id)
-    {
-        return $this->LedgerRepository
+        return $this->LedgerRecordRepository
+            ->with('Ledger')
+            ->with('LedgerRecordDetail')
+            ->with('LedgerRecordAttach')
             ->find($id);
     }
 
@@ -61,7 +70,6 @@ class BookkeepingService
             'date DESC',
             'id ASC'
         ];
-
 
         return $this->LedgerRecordRepository
             ->perPage(20)
