@@ -57,7 +57,14 @@ class BookkeepingService
     public function getLedgerRecordList($id, $filter = [])
     {
         $filter['ledger_id'] = $id;
+        $filter['orderBy'] = [
+            'date DESC',
+            'id ASC'
+        ];
+
+
         return $this->LedgerRecordRepository
+            ->perPage(20)
             ->fetchPagination($filter);
     }
 }

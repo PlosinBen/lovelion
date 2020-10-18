@@ -16,6 +16,7 @@ class LedgerRecord extends Model
         'date',
         'locate',
         'total',
+        'note'
     ];
 
     protected $dates = ['date'];

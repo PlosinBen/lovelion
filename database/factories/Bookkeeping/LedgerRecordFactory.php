@@ -24,6 +24,7 @@ class LedgerRecordFactory extends Factory
         return [
             'ledger_id' => 1,
             'date' => $this->faker->date(),
+            'name' => $this->faker->name,
             'locate' => $this->faker->country,
             'total' => $this->faker->numerify('####.##'),
         ];
