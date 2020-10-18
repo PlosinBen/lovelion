@@ -16,6 +16,7 @@
 </head>
 <body>
 
+
 <section>
     <div class="container">
         <nav class="navbar navbar-light navbar-expand-md py-0">
@@ -40,26 +41,7 @@
 
 @yield('PreContent')
 
-@if(count($_breadcrumbs) > 0)
-    <section class="container mt-3">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="/">{{ env('APP_NAME') }}</a>
-                </li>
-                @foreach($_breadcrumbs as $key => $url)
-                    @if($url !== null)
-                        <li class="breadcrumb-item">
-                            <a href="{{ $url }}">{{ $key }}</a>
-                        </li>
-                    @else
-                        <li class="breadcrumb-item active" aria-current="page">{{ $key }}</li>
-                    @endif
-                @endforeach
-            </ol>
-        </nav>
-    </section>
-@endif
+@includeWhen(count($_breadcrumbs) > 0, 'component.breadcrumb', ['breadcrumbs' => $_breadcrumbs])
 
 @yield('Content')
 

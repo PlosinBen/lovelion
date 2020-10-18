@@ -16,6 +16,7 @@ class CreateLedgerRecordTable extends Migration
         Schema::create('ledger_record', function (Blueprint $table) {
             $table->id();
             $table->integer('ledger_id')->unsigned();
+            $table->date('date');
             $table->string('locate');
             $table->decimal('total', 10, 2);
             $table->timestamps();

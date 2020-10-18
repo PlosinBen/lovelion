@@ -13,7 +13,10 @@ class LedgerRecord extends Model
 
     protected $fillable = [
         'ledger_id',
+        'date',
         'locate',
         'total',
     ];
+
+    protected $dates = ['date'];
 }

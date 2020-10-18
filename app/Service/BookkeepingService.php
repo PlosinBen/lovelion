@@ -2,16 +2,19 @@
 
 namespace App\Service;
 
+use App\Repository\Bookkeeping\LedgerRecordRepository;
 use App\Repository\Bookkeeping\LedgerRepository;
 use Illuminate\Support\Collection;
 
 class BookkeepingService
 {
     private LedgerRepository $LedgerRepository;
+    private LedgerRecordRepository $LedgerRecordRepository;
 
-    public function __construct(LedgerRepository $ledgerRepository)
+    public function __construct(LedgerRepository $ledgerRepository, LedgerRecordRepository $ledgerRecordRepository)
     {
         $this->LedgerRepository = $ledgerRepository;
+        $this->LedgerRecordRepository = $ledgerRecordRepository;
     }
 
     public function getLedgerAll($filter = [])
@@ -53,6 +56,8 @@ class BookkeepingService
 
     public function getLedgerRecordList($id, $filter = [])
     {
-
+        $filter['ledger_id'] = $id;
+        return $this->LedgerRecordRepository
+            ->fetchPagination($filter);
     }
 }

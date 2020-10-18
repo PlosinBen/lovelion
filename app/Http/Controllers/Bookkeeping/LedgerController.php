@@ -16,10 +16,14 @@ class LedgerController extends Controller
 
     public function show($id, BookkeepingService $bookkeepingService)
     {
-        $bookkeepingService->getLedger($id);
+        $ledger = $bookkeepingService->getLedger($id);
 
-        $this->pushBreadcrumbsNode('Ledger');
-
+        return $this
+            ->pushBreadcrumbsNode("{$ledger->name}")
+            ->view('bookkeeping.ledger.show', [
+                'ledger' => $ledger,
+                'ledgerRecords' => $bookkeepingService->getLedgerRecordList($id),
+            ]);
     }
 
     public function store(RequestValidator $requestValidator, BookkeepingService $bookkeepingService)
@@ -35,7 +39,7 @@ class LedgerController extends Controller
             ->validate()
             ->get();
 
-        if( !$requestValidator->passes() ) {
+        if (!$requestValidator->passes()) {
             return redirect()
                 ->route('dashboard')
                 ->withErrors($requestValidator->errors());

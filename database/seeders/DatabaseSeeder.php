@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class
         ]);
 
+        //ledger
+        \App\Models\Bookkeeping\Ledger::factory(2)->create();
+        \App\Models\Bookkeeping\LedgerRecord::factory(10)->create();
+
+
     }
 }

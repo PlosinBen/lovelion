@@ -10,7 +10,6 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-
         $this->pushBreadcrumbsNode('Dashboard');
 
         return $this->view(
