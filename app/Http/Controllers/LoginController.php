@@ -21,7 +21,7 @@ class LoginController extends Controller
         $path = request()->get('path');
         if (env('APP_ENV') === 'local') {
             auth()->loginUsingId(1);
-            return redirect(route($path));
+            return redirect($path);
         }
 
         session(['login_refer' => $path]);

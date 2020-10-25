@@ -35,13 +35,15 @@ class LedgerRecordController extends Controller
             ]);
     }
 
-    public function update($id, RequestValidator $requestValidator, Request $request)
+    public function update($id, Request $request)
     {
         $this->BookkeepingService->updateLedgerRecord(
             $id,
             $request->get('ledgerRecordDetail'),
             $request->get('ledgerRecordAttach')
         );
+
+        return redirect()->route('bookkeeping.ledger.show', $id);
     }
 
 }

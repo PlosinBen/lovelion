@@ -28,6 +28,7 @@ class LedgerRecordDetailRepository extends Repository
                 LedgerRecordDetail::insert($detail);
                 continue;
             }
+
             $id = $detail['id'];
             unset($detail['id']);
             $model
@@ -35,5 +36,10 @@ class LedgerRecordDetailRepository extends Repository
                 ->where('id', $id)
                 ->update($detail);
         }
+
+        $model = clone $this->Model;
+        $model->where('updated_at', null)
+            ->delete();
+
     }
 }

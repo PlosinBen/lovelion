@@ -90,5 +90,6 @@ class BookkeepingService
     public function updateLedgerRecord($id, $details, $attaches)
     {
         $this->LedgerRecordDetailRepository->replaceRecord($id, $details);
+        $this->LedgerRecordAttachRepository->replaceRecord($id, $attaches);
     }
 }
