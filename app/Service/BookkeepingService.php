@@ -65,6 +65,11 @@ class BookkeepingService
             ->fetchPagination($filter);
     }
 
+    public function getLedgerStatistics($id)
+    {
+        return $this->LedgerRecordRepository->calcStatistics($id);
+    }
+
     public function getLedgerRecord($id)
     {
         return $this->LedgerRecordRepository

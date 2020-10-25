@@ -5,7 +5,25 @@
         <div class="card">
             <div class="card-body border-bottom">
                 <div class="row">
-
+                    <div class="col-12 col-md-8">
+                        <h5 class="h4 mb-0">{{ $ledger->name }}</h5>
+                    </div>
+                    <div class="col-12 col-md-4 text-right mb-3">
+                        <label class="small">建立時間</label>：
+                        <span class="small">{{ $ledger->created_at }}</span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label>幣別</label>：
+                        <span>{{ $ledger->currency_code }}</span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label>消費筆數</label>：
+                        <span>{{ $statistics->count }}</span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label>消費金額</label>：
+                        <span>{{ $statistics->total }}</span>
+                    </div>
                 </div>
             </div>
             <div class="card-body">

@@ -36,6 +36,7 @@ class LedgerController extends Controller
             ->view('bookkeeping.ledger.show', [
                 'ledger' => $ledger,
                 'ledgerRecords' => $this->BookkeepingService->getLedgerRecordList($id),
+                'statistics' => $this->BookkeepingService->getLedgerStatistics($id),
             ]);
     }
 
