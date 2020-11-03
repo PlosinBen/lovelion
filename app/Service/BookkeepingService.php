@@ -60,9 +60,11 @@ class BookkeepingService
 
     public function getLedgerList($filter = [])
     {
-        $data = $this->LedgerRepository
+        $ledgerPagination = $this->LedgerRepository
             ->with('LedgerRecord')
             ->fetchPagination($filter);
+
+        return $ledgerPagination;
     }
 
     public function getLedgerStatistics($id)

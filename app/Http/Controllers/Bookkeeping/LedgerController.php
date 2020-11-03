@@ -20,7 +20,9 @@ class LedgerController extends Controller
 
     public function index()
     {
-
+        return $this->view('bookkeeping.ledger.index', [
+            'ledgerEntities' => $this->BookkeepingService->getLedgerList([])
+        ]);
     }
 
     public function show($id)
