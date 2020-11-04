@@ -24,7 +24,7 @@ class UserService
             ->fetchBySocialMedia($provider, $user->getId())
             ->first();
 
-        if( $userOpenIdEntity === null ) {
+        if ($userOpenIdEntity === null) {
             return null;
         }
 
