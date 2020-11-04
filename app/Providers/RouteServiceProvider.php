@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->memberRoute();
             $this->bookkeepingRoute();
+
+            $this->apiRoute();
             //$this->futuresRoute();
 
 //            Route::prefix('api')
@@ -84,6 +86,14 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace("{$this->namespace}\Futures")
             ->as('futures.')
             ->group(base_path('routes/futures.php'));
+    }
+
+    protected function apiRoute()
+    {
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace("{$this->namespace}\Api")
+                ->group(base_path('routes/api.php'));
     }
 
     /**

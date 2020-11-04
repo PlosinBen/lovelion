@@ -21,7 +21,7 @@ install:
 script: phpunit -c ./phpunit.xml ./tests --coverage-text
 
 notifications:
-  webhooks: https://www.lovelion.me/api/deploy
+  webhooks: https://www.lovelion.me/api/hook/travis-ci
 
 addons:
   hosts:
