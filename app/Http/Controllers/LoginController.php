@@ -8,7 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 class LoginController extends Controller
 {
     private array $socialProvider = [
-        'facebook'
+        'facebook',
     ];
 
     public function login()
@@ -21,10 +21,12 @@ class LoginController extends Controller
         $path = request()->get('path');
         if (env('APP_ENV') === 'local') {
             auth()->loginUsingId(1);
+
             return redirect($path);
         }
 
         session(['login_refer' => $path]);
+
         return Socialite::driver($provider)
             ->redirectUrl(route('login.callback', $provider))
             ->redirect();
@@ -32,6 +34,5 @@ class LoginController extends Controller
 
     public function callback($provider)
     {
-
     }
 }

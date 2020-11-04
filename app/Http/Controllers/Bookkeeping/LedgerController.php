@@ -21,7 +21,7 @@ class LedgerController extends Controller
     public function index()
     {
         return $this->view('bookkeeping.ledger.index', [
-            'ledgerEntities' => $this->BookkeepingService->getLedgerList([])
+            'ledgerEntities' => $this->BookkeepingService->getLedgerList([]),
         ]);
     }
 
@@ -49,13 +49,13 @@ class LedgerController extends Controller
                 'name' => 'required',
                 'currency_code' => [
                     'required',
-                    Rule::in(collect(config('currency'))->keys())
+                    Rule::in(collect(config('currency'))->keys()),
                 ],
             ])
             ->validate()
             ->get();
 
-        if (!$requestValidator->passes()) {
+        if (! $requestValidator->passes()) {
             return redirect()
                 ->route('dashboard')
                 ->withErrors($requestValidator->errors());

@@ -14,7 +14,6 @@ class LedgerRecordController extends Controller
 
     public function __construct(BookkeepingService $bookkeepingService)
     {
-
         $this->BookkeepingService = $bookkeepingService;
 
         $this->pushBreadcrumbsNode('Ledger', route('bookkeeping.ledger.index'));
@@ -31,11 +30,11 @@ class LedgerRecordController extends Controller
 
         return $this
             ->pushBreadcrumbsNode($ledgerRecord->Ledger->name, route('bookkeeping.ledger.show', $ledgerRecord->Ledger->id))
-            ->pushBreadcrumbsNode('編輯 #' . $ledgerRecord->id)
+            ->pushBreadcrumbsNode('編輯 #'.$ledgerRecord->id)
             ->view('bookkeeping.ledger.editRecord', [
                 'ledgerRecord' => $ledgerRecord,
                 'action' => route('bookkeeping.ledgerRecord.update', $ledgerRecord->Ledger->id),
-                'method' => 'PUT'
+                'method' => 'PUT',
             ]);
     }
 
@@ -45,12 +44,12 @@ class LedgerRecordController extends Controller
 
         $params = $requestValidator
             ->rule([
-                'ledger_id' => 'required'
+                'ledger_id' => 'required',
             ])
             ->validate()
             ->get();
 
-        if (!$requestValidator->passes()) {
+        if (! $requestValidator->passes()) {
             return redirect()->route('dashboard');
         }
 
@@ -64,7 +63,7 @@ class LedgerRecordController extends Controller
             'id' => 'new',
             'Ledger' => $ledger,
             'ledger_record_detail' => [],
-            'ledger_record_attach' => []
+            'ledger_record_attach' => [],
         ];
 
         return $this
@@ -109,5 +108,4 @@ class LedgerRecordController extends Controller
 
         return redirect()->route('bookkeeping.ledger.show', $ledger->id);
     }
-
 }

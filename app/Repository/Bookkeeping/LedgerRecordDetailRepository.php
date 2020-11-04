@@ -19,11 +19,11 @@ class LedgerRecordDetailRepository extends Repository
         $model
             ->where('ledger_record_id', $ledgerRecordId)
             ->update([
-                'updated_at' => null
+                'updated_at' => null,
             ]);
 
-        foreach($details as $detail) {
-            if( $detail['id'] === null ) {
+        foreach ($details as $detail) {
+            if ($detail['id'] === null) {
                 $detail['ledger_record_id'] = $ledgerRecordId;
                 $detail['other'] = $detail['other'] ?? 0;
                 LedgerRecordDetail::insert($detail);

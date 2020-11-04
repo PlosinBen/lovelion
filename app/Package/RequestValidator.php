@@ -2,14 +2,17 @@
 
 namespace App\Package;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator as ValidatorResult;
-use Illuminate\Http\Request;
 
 class RequestValidator
 {
-    protected Collection $original, $rule, $default, $result;
+    protected Collection $original;
+    protected Collection $rule;
+    protected Collection $default;
+    protected Collection $result;
     protected ValidatorResult $validateResult;
 
     public Request $request;
@@ -32,6 +35,7 @@ class RequestValidator
     public function rule(array $rule): self
     {
         $this->rule = collect($rule);
+
         return $this;
     }
 
@@ -42,6 +46,7 @@ class RequestValidator
     public function default(array $default): self
     {
         $this->default = collect($default);
+
         return $this;
     }
 
@@ -66,8 +71,10 @@ class RequestValidator
             if (is_string($value) && strlen($value) === 0) {
                 $value = $this->default->get($key, '');
             }
+
             return $value;
         });
+
         return $this;
     }
 

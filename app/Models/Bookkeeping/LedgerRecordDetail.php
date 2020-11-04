@@ -17,6 +17,6 @@ class LedgerRecordDetail extends Model
         'unit',
         'quantity',
         'other',
-        'subtotal'
+        'subtotal',
     ];
 }

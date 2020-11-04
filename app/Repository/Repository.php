@@ -3,10 +3,10 @@
 namespace App\Repository;
 
 use App\Exceptions\EntityNotExistException;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection as SupportCollection;
 
 class Repository
@@ -18,12 +18,14 @@ class Repository
     public function with(string $table): self
     {
         $this->withTables[] = $table;
+
         return $this;
     }
 
     public function perPage(int $perPage): self
     {
         $this->perPage = $perPage;
+
         return $this;
     }
 
@@ -33,6 +35,7 @@ class Repository
         if (count($this->withTables)) {
             $model = $model->with($this->withTables);
         }
+
         return $model->find($id);
     }
 
@@ -75,7 +78,7 @@ class Repository
 
         $columns->map(function ($value, $scopeName) use (&$query) {
             $scopeName = parseCameCase($scopeName);
-            if (method_exists($this->Model, 'scope' . ucfirst($scopeName))) {
+            if (method_exists($this->Model, 'scope'.ucfirst($scopeName))) {
                 $query = call_user_func([$query, $scopeName], $value);
             }
         });

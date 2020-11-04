@@ -16,6 +16,7 @@ class Controller extends BaseController
     protected function pushBreadcrumbsNode($name, $url = null): self
     {
         $this->breadcrumbs[$name] = $url;
+
         return $this;
     }
 

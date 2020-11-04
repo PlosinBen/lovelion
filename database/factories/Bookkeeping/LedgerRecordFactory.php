@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Bookkeeping;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Bookkeeping\LedgerRecord;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LedgerRecordFactory extends Factory
 {

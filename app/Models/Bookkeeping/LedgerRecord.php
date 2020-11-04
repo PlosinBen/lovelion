@@ -16,14 +16,14 @@ class LedgerRecord extends Model
         'date',
         'locate',
         'total',
-        'note'
+        'note',
     ];
 
     protected $dates = ['date'];
 
     public function scopeLedgerId($query, $val)
     {
-        switch(gettype($val)) {
+        switch (gettype($val)) {
             case 'string':
                 $val = explode(',', $val);
                 // no break
@@ -51,5 +51,4 @@ class LedgerRecord extends Model
     {
         return $this->hasMany(LedgerRecordAttach::class);
     }
-
 }

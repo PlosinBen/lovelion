@@ -18,7 +18,7 @@ class Authenticate extends Middleware
             $routeName = $request->getRequestUri();
 
             return route('login.index', [
-                'path' => $routeName
+                'path' => $routeName,
             ]);
         }
     }

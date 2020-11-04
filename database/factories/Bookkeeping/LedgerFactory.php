@@ -2,8 +2,8 @@
 
 namespace Database\Factories\Bookkeeping;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Bookkeeping\Ledger;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LedgerFactory extends Factory
 {
@@ -24,7 +24,7 @@ class LedgerFactory extends Factory
         return [
             'user_id' => 1,
             'name' => $this->faker->userName,
-            'currency_code' => $this->faker->currencyCode
+            'currency_code' => $this->faker->currencyCode,
         ];
     }
 }

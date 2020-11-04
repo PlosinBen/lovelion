@@ -20,8 +20,7 @@ class BookkeepingService
         LedgerRecordRepository $ledgerRecordRepository,
         LedgerRecordDetailRepository $ledgerRecordDetailRepository,
         LedgerRecordAttachRepository $ledgerRecordAttachRepository
-    )
-    {
+    ) {
         $this->LedgerRepository = $ledgerRepository;
         $this->LedgerRecordRepository = $ledgerRecordRepository;
         $this->LedgerRecordDetailRepository = $ledgerRecordDetailRepository;
@@ -86,7 +85,7 @@ class BookkeepingService
         $filter['ledger_id'] = $id;
         $filter['orderBy'] = [
             'date DESC',
-            'id ASC'
+            'id ASC',
         ];
 
         return $this->LedgerRecordRepository

@@ -16,7 +16,7 @@ class DashboardController extends Controller
             'dashboard',
             [
                 'ledgerEntities' => $bookkeepingService->getLedgerAll([
-                    'userId' => $user->id
+                    'userId' => $user->id,
                 ]),
             ]
         );

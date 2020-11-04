@@ -19,11 +19,11 @@ class LedgerRecordAttachRepository extends Repository
         $model
             ->where('ledger_record_id', $ledgerRecordId)
             ->update([
-                'updated_at' => null
+                'updated_at' => null,
             ]);
 
-        foreach($attaches ?? [] as $attach) {
-            if( $attach['id'] === null ) {
+        foreach ($attaches ?? [] as $attach) {
+            if ($attach['id'] === null) {
                 $attach['ledger_record_id'] = $ledgerRecordId;
                 LedgerRecordAttach::insert($attach);
                 continue;

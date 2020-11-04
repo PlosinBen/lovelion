@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         //Member
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
         ]);
 
         //ledger
@@ -25,6 +25,5 @@ class DatabaseSeeder extends Seeder
         \App\Models\Bookkeeping\LedgerRecord::factory(30)->create();
         \App\Models\Bookkeeping\LedgerRecordDetail::factory(4)->create();
         \App\Models\Bookkeeping\LedgerRecordAttach::factory(2)->create();
-
     }
 }

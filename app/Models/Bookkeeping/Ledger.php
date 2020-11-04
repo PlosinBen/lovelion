@@ -14,7 +14,7 @@ class Ledger extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'currency_code'
+        'currency_code',
     ];
 
     public function LedgerRecord()

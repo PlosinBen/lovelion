@@ -44,7 +44,6 @@ class RouteServiceProvider extends ServiceProvider
             $this->bookkeepingRoute();
             //$this->futuresRoute();
 
-
 //            Route::prefix('api')
 //                ->middleware('api')
 //                ->namespace($this->namespace)
@@ -68,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware(['web', 'auth'])
             ->namespace("{$this->namespace}\Member")
             ->as('member.')
-            ->group(base_path("routes/member.php"));
+            ->group(base_path('routes/member.php'));
     }
 
     protected function bookkeepingRoute()
@@ -76,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware(['web', 'auth'])
             ->namespace("{$this->namespace}\Bookkeeping")
             ->prefix('bookkeeping')
-            ->group(base_path("routes/bookkeeping.php"));
+            ->group(base_path('routes/bookkeeping.php'));
     }
 
     protected function futuresRoute()

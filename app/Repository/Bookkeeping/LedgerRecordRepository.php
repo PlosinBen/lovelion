@@ -18,7 +18,7 @@ class LedgerRecordRepository extends Repository
             'user_id' => $userId,
             'ledger_id' => $ledgerId,
             'locate' => $locate,
-            'note' => $note ?? ''
+            'note' => $note ?? '',
         ]);
     }
 
