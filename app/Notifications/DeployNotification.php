@@ -55,11 +55,11 @@ class DeployNotification extends Notification
         $buildResult = $this->travisPayload->result_message;
         $branch = $this->travisPayload->branch;
         $repoName = $this->travisPayload->repository->name;
-        $repoOwner = $this->travisPayload->repository > owner_name;
+//        $repoOwner = $this->travisPayload->repository->owner_name;
         $author = $this->travisPayload->author_name;
 
         $messageStack = collect();
-        foreach ($this->matrix as $matrix) {
+        foreach ($this->travisPayload->matrix as $matrix) {
             $commit = substr($matrix->commit, 0, 8);
             $message = $matrix->message;
             $compare_url = $matrix->compare_url;
