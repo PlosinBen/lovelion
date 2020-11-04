@@ -2,15 +2,14 @@
 
 namespace App\Service;
 
-use Laravel\Socialite\Contracts\User;
 use App\Repository\Member\UserOpenIdRepository;
 use App\Repository\Member\UserRepository;
+use Laravel\Socialite\Contracts\User;
 
 class UserService
 {
     private UserRepository $userRepository;
     private UserOpenIdRepository $userOpenIdRepository;
-
 
     public function __construct(UserRepository $userRepository, UserOpenIdRepository $userOpenIdRepository)
     {

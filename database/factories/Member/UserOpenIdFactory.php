@@ -26,7 +26,7 @@ class UserOpenIdFactory extends Factory
             'provider' => 'facebook',
             'open_id' => '2259142200794542',
             'name' => 'ChenFeng Hsu',
-            'avatar' => 'https://graph.facebook.com/1918911484817617/picture?width=150&height=150'
+            'avatar' => 'https://graph.facebook.com/1918911484817617/picture?width=150&height=150',
         ];
     }
 }

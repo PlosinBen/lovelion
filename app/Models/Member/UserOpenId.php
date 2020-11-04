@@ -16,7 +16,7 @@ class UserOpenId extends Model
         'provider',
         'open_id',
         'name',
-        'avatar'
+        'avatar',
     ];
 
     public function User()

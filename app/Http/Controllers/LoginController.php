@@ -38,8 +38,8 @@ class LoginController extends Controller
 
         $user = $userService->getBySocialUser($provider, $user);
 
-        if( $user === null ) {
-            #register?
+        if ($user === null) {
+            //register?
 
             return;
         }

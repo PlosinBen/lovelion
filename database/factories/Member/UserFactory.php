@@ -23,7 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'Ben',
-//            'email' => 'PlosinBen@gmail.com',
+            //            'email' => 'PlosinBen@gmail.com',
             'avatar' => 'https://graph.facebook.com/1918911484817617/picture?width=150&height=150',
         ];
     }

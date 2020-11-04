@@ -16,7 +16,7 @@ class UserOpenIdRepository extends Repository
     {
         return $this->fetch([
             'provider' => $provider,
-            'open_id' => $open_id
+            'open_id' => $open_id,
         ])->first();
     }
 }
