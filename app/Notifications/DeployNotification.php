@@ -23,7 +23,6 @@ class DeployNotification extends Notification
      */
     public function __construct($travisPayload)
     {
-        Log::error(json_encode($travisPayload));
         $this->travisPayload = $travisPayload;
     }
 
