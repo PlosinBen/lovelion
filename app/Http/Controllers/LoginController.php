@@ -19,7 +19,7 @@ class LoginController extends Controller
             ->withCookie('login_refer', $request->get('path'));
     }
 
-    public function loginSocial(string $provider, Request $request)
+    public function loginSocial(string $provider)
     {
         if (env('APP_ENV') === 'local') {
             auth()->loginUsingId(1);

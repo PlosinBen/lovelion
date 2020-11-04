@@ -19,8 +19,15 @@ class UserService
 
     public function getBySocialUser(string $provider, User $user)
     {
-        return $this->userOpenIdRepository
+        $userOpenIdEntity = $this->userOpenIdRepository
             ->with('User')
-            ->fetchBySocialMedia($provider, $user->getId());
+            ->fetchBySocialMedia($provider, $user->getId())
+            ->first();
+
+        if( $userOpenIdEntity === null ) {
+            return null;
+        }
+
+        return $userOpenIdEntity->User;
     }
 }
