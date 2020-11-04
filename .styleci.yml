@@ -1,13 +1,16 @@
+version: 7
 preset: laravel
-  disabled:
-    - no_unused_imports
-  finder:
-    name:
-      - "*.php"
-    not-name:
-      - index.php
-      - server.php
-      - "*.blade.php"
+tab-width: 4
+use-tabs: false
+disabled:
+  - no_unused_imports
+finder:
+  name:
+    - "*.php"
+  not-name:
+    - "*.blade.php"
+    - index.php
+    - server.php
 
 
 
