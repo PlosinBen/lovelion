@@ -28,6 +28,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['namespace' => 'Investment', 'prefix' => 'investment', 'as' => 'investment.'], function () {
-        Route::resource('/commitment', 'CommitmentController');
+        Route::resource('/commitment', 'CommitmentController', ['only' => ['index']]);
     });
 });
