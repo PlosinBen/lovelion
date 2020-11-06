@@ -71,3 +71,11 @@
         </div>
     </section>
 @endsection
+
+@section('StyleSheet')
+    <style>
+        div.card-body div.row:nth-child(even){
+            background-color: #f8f9fa
+        }
+    </style>
+@endsection
