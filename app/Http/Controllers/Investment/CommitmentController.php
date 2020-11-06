@@ -29,7 +29,7 @@ class CommitmentController extends Controller
         return $this
             ->pushBreadcrumbsNode('歷史權益')
             ->view('investment.commitment.index', [
-                'CommitmentList' => $this->investmentService->getCommitmentList($filter)
+                'CommitmentList' => $this->investmentService->getCommitmentList($filter),
             ]);
     }
 }

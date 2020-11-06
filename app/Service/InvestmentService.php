@@ -11,8 +11,7 @@ class InvestmentService
 
     public function __construct(
         InvestmentAccountingRepository $investmentAccountingRepository
-    )
-    {
+    ) {
         $this->investmentAccountingRepository = $investmentAccountingRepository;
     }
 

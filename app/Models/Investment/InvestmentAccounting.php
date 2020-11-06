@@ -22,7 +22,7 @@ class InvestmentAccounting extends Model
 
     public function setPeriodAttribute($period)
     {
-        if (!$period instanceof Carbon) {
+        if (! $period instanceof Carbon) {
             $period = Carbon::parse($period);
         }
 
@@ -44,7 +44,7 @@ class InvestmentAccounting extends Model
             return $query;
         }
 
-        if (!$value instanceof Carbon) {
+        if (! $value instanceof Carbon) {
             $value = Carbon::parse($value);
         }
 
