@@ -22,8 +22,10 @@
     <div class="row pt-3 pb-2 border-bottom">
         <div class="col-12 col-sm-6 col-md-2 mb-2 text-center">
             {{ $investmentEntity->period }}
-            <a href="{{ route('investment.commitment.show', $investmentEntity->period) }}"
-               class="btn btn-xs btn-success ml-2">View</a>
+            @if(isset($detailBtn) && $detailBtn === true)
+                <a href="{{ route('investment.commitment.show', $investmentEntity->period) }}"
+                   class="btn btn-xs btn-success ml-2">View</a>
+            @endif
         </div>
         <div class="col-4 col-sm-2 d-md-none text-center">
             <strong>損益</strong>

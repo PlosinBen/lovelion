@@ -14,7 +14,7 @@ class CommitmentController extends Controller
     {
         $this->investmentService = $investmentService;
 
-        $this->pushBreadcrumbsNode('投資');
+        $this->pushBreadcrumbsNode('投資', route('investment.commitment.index'));
     }
 
     public function index(Request $request)

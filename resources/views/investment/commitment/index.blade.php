@@ -7,7 +7,7 @@
                 {{ $CommitmentList->withQueryString()->links() }}
             </div>
             <div class="card-body pt-0">
-                @include('component.investment.commitment-list',['CommitmentList' => $CommitmentList])
+                @include('component.investment.commitment-list',['CommitmentList' => $CommitmentList, 'detailBtn' => true])
             </div>
             <div class="card-body">
                 {{ $CommitmentList->withQueryString()->links() }}
