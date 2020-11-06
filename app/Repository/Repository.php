@@ -17,7 +17,6 @@ class Repository
 
     public function __construct()
     {
-
     }
 
     public function with(string $table): self
@@ -83,7 +82,7 @@ class Repository
 
         $columns->map(function ($value, $scopeName) use (&$query) {
             $scopeName = parseCameCase($scopeName);
-            if (method_exists($this->Model, 'scope' . ucfirst($scopeName))) {
+            if (method_exists($this->Model, 'scope'.ucfirst($scopeName))) {
                 $query = call_user_func([$query, $scopeName], $value);
             }
         });
