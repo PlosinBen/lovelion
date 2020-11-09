@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="createLedgerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createLedgerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ route('bookkeeping.ledger.store') }}" method="POST">
             <div class="modal-content">

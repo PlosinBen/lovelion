@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Investment;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddStatementRequests;
 use App\Service\StatementService;
 use Illuminate\Http\Request;
 
@@ -23,5 +24,12 @@ class StatementController extends Controller
             ->view('component.statement.index', [
                 'FuturesStatements' => $this->statementService->getFuturesList([]),
             ]);
+    }
+
+    public function store(AddStatementRequests $addStatementRequests)
+    {
+        $this->statementService->add($addStatementRequests->validated());
+
+        return redirect()->route('investment.statement.index');
     }
 }
