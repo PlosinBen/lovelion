@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AddStatementRequests extends FormRequest
 {
-
     protected $errorBag = 'AddStatement';
 
     /**
