@@ -26,10 +26,19 @@ class StatementFutures extends Model
 
     public function setPeriodAttribute($period)
     {
-        if (! $period instanceof Carbon) {
+        if (!$period instanceof Carbon) {
             $period = Carbon::parse($period);
         }
 
-        $this->attributes['period'] = $period->endOfMonth();
+        $this->attributes['period'] = $period->startOfMonth();
+    }
+
+    public function scopePeriod($query, $value)
+    {
+        if (!$value instanceof Carbon) {
+            $value = Carbon::parse($value);
+        }
+
+        return $query->where('period', $value->startOfMonth()->toDateString());
     }
 }

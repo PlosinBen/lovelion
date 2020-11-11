@@ -6,6 +6,7 @@ use App\Repository\Investment\InvestmentAccountingRepository;
 use App\Repository\Investment\InvestmentDetailRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class InvestmentService
 {
@@ -40,16 +41,53 @@ class InvestmentService
             ->fetchCommitmentDetail($commitment);
     }
 
+    public function getAccountEstimate(Carbon $period): Collection
+    {
+        $prePeriodAccounting = $this->investmentAccountingRepository
+            ->fetchByPeriod($period->copy()->subMonth())
+            ->keyBy('investment_user_id');
+
+        $weightUnit = config('investment.weightUnit');
+
+        return $this->investmentDetailRepository
+            ->fetchByPeriod($period)
+            ->groupBy('investment_user_id')
+            ->map(function ($investmentUserGroup, $investmentUserId) use ($prePeriodAccounting, $weightUnit) {
+                $userPerPeriodAccounting = $prePeriodAccounting->get($investmentUserId);
+
+                $userAccountingEstimate = $investmentUserGroup
+                    ->groupBy('type')
+                    ->map(function ($typeGroup) {
+                        return $typeGroup->sum('amount');
+                    })
+                    ->put('pre_commitment', $userPerPeriodAccounting->commitment);
+
+                $profitAbleCommitment = $userPerPeriodAccounting->commitment
+                    - $userAccountingEstimate->get('withdraw', 0)
+                    + $userAccountingEstimate->get('transfer', 0);
+
+                $weight = 0;
+
+                if ($profitAbleCommitment > 0) {
+                    $weight = max(floor($profitAbleCommitment / $weightUnit), 0.5);
+                }
+
+                return $userAccountingEstimate->put('weight', $weight);
+            });
+    }
+
     public function updateUsersTypeGroup(Carbon $period)
     {
         $prePeriodAccounting = $this->investmentAccountingRepository
             ->fetchByPeriod($period->copy()->subMonth())
             ->keyBy('investment_user_id');
 
-        $data = $this->investmentDetailRepository
+        $investmentAccounting = collect();
+
+        $this->investmentDetailRepository
             ->fetchByPeriod($period)
             ->groupBy('investment_user_id')
-            ->each(function ($investmentUserGroup, $investmentUserId) use ($prePeriodAccounting, $period) {
+            ->each(function ($investmentUserGroup, $investmentUserId) use ($prePeriodAccounting, $period, $investmentAccounting) {
                 $userTypeData = $investmentUserGroup
                     ->groupBy('type')
                     ->map(function ($typeGroup) {
@@ -67,11 +105,11 @@ class InvestmentService
 
                 $userTypeData->put('commitment', $commitment);
 
-                $this->investmentAccountingRepository
-                    ->setUserPeriodValue($investmentUserId, $period, $userTypeData);
+                $investmentAccounting->put($investmentUserId,
+                    $this->investmentAccountingRepository->setUserPeriodValue($investmentUserId, $period, $userTypeData),
+                );
             });
 
-
-        dd($data);
+        return $investmentAccounting;
     }
 }

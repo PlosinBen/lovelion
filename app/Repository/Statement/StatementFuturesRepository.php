@@ -5,6 +5,7 @@ namespace App\Repository\Statement;
 use App\Models\Investment\StatementFutures;
 use App\Repository\Repository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class StatementFuturesRepository extends Repository
 {
@@ -19,5 +20,12 @@ class StatementFuturesRepository extends Repository
         $columns['note'] = $columns['note'] ?? '';
 
         return parent::insert($columns);
+    }
+
+    public function fetchByPeriod(Carbon $period)
+    {
+        return $this->fetch([
+            'period' => $period,
+        ])->first();
     }
 }

@@ -42,9 +42,18 @@ class StatementController extends Controller
         $now = Carbon::now();
         $period = Carbon::parse($period);
         do {
-            $investmentServices->updateUsersTypeGroup($period);
+            $accountEstimate = $investmentServices->getAccountEstimate($period);
 
-            $this->statementService->pretreatment($period);
+            $statement = $this->statementService->pretreatment(
+                $period,
+                $accountEstimate->sum('deposit'),
+                $accountEstimate->sum('withdraw'),
+                $accountEstimate->sum('transfer')
+            );
+
+            dd($accountEstimate, $statement);
+
+
             echo $period->toDateString();
         } while ($period->addMonth() && $period->lessThan($now));
     }
