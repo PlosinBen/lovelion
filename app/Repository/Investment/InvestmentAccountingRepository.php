@@ -4,6 +4,8 @@ namespace App\Repository\Investment;
 
 use App\Models\Investment\InvestmentAccounting;
 use App\Repository\Repository;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class InvestmentAccountingRepository extends Repository
 {
@@ -16,6 +18,26 @@ class InvestmentAccountingRepository extends Repository
     {
         return $this->fetch([
             'investment_user_id' => $investmentUserId,
+            'period' => $period,
+        ]);
+    }
+
+    public function setUserPeriodValue($investmentUserId, Carbon $period, Collection $columns)
+    {
+        $statementAccountEntity = $this->Model->firstOrNew([
+            'investment_user_id' => $investmentUserId,
+            'period' => $period->firstOfMonth()->toDateString(),
+        ]);
+
+        $this->setEntityColumns($statementAccountEntity, $columns)
+            ->save();
+
+        return $statementAccountEntity;
+    }
+
+    public function fetchByPeriod(Carbon $period): Collection
+    {
+        return $this->fetch([
             'period' => $period,
         ]);
     }

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Http\Requests\AddStatementRequests;
 use App\Repository\Statement\StatementFuturesRepository;
+use Illuminate\Support\Carbon;
 
 class StatementService
 {
@@ -24,5 +25,10 @@ class StatementService
     public function add(array $columns)
     {
         return $this->statementFuturesRepository->insert($columns);
+    }
+
+    public function pretreatment(Carbon $period)
+    {
+        
     }
 }

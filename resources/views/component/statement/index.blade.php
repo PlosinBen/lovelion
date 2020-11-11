@@ -92,9 +92,9 @@
                             <strong>操作</strong>
                         </div>
                         <div class="col-6 col-sm-3 col-md-2 col-xl pb-2">
-                            <button class="btn btn-warning btn-xs">
+                            <a href="{{ route('investment.statement.show', $futuresStatement->period->toDateString()) }}" class="btn btn-warning btn-xs">
                                 <i class="fas fa-calculator"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 @endforeach
