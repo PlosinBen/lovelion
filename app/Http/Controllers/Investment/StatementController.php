@@ -51,9 +51,23 @@ class StatementController extends Controller
                 $accountEstimate->sum('transfer')
             );
 
-            dd($accountEstimate, $statement);
+            #總權重
+            $totalWeight = $accountEstimate->sum('weight');
+            #每單位損益 = 可分配總額 / 前期總權重
+            $perWeightProfit = floor($statement->distribution / $totalWeight);
 
-            echo $period->toDateString();
+            #分配損益
+            $userProfit = $accountEstimate
+                ->where('investment_user_id', '!=', 1)
+                ->map(function ($futures) use ($perWeightProfit) {
+                    return floor($futures->get('weight', 0) * $perWeightProfit);
+                });
+
+            $userProfit->put(1, $statement->net_commitment - $userProfit->sum());
+
+            dd($userProfit);
+
+            $investmentServices->distributionProfit();
         } while ($period->addMonth() && $period->lessThan($now));
     }
 }

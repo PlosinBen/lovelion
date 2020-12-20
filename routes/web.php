@@ -32,3 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/statement', 'StatementController', ['only' => ['index', 'store', 'show']]);
     });
 });
+
+Route::group(['prefix' => 'about'], function() {
+    Route::get('privacy', 'AboutController@privacy');
+});

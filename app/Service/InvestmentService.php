@@ -59,6 +59,7 @@ class InvestmentService
                     ->map(function ($typeGroup) {
                         return $typeGroup->sum('amount');
                     })
+                    ->put('investment_user_id', $investmentUserId)
                     ->put('pre_commitment', $userPerPeriodAccounting->commitment);
 
                 $profitAbleCommitment = $userPerPeriodAccounting->commitment
@@ -75,40 +76,8 @@ class InvestmentService
             });
     }
 
-    public function updateUsersTypeGroup(Carbon $period)
+    public function distributionProfit($accountEstimate, $statement)
     {
-        $prePeriodAccounting = $this->investmentAccountingRepository
-            ->fetchByPeriod($period->copy()->subMonth())
-            ->keyBy('investment_user_id');
 
-        $investmentAccounting = collect();
-
-        $this->investmentDetailRepository
-            ->fetchByPeriod($period)
-            ->groupBy('investment_user_id')
-            ->each(function ($investmentUserGroup, $investmentUserId) use ($prePeriodAccounting, $period, $investmentAccounting) {
-                $userTypeData = $investmentUserGroup
-                    ->groupBy('type')
-                    ->map(function ($typeGroup) {
-                        return $typeGroup->sum('amount');
-                    });
-
-                $userPrePeriodAccounting = $prePeriodAccounting->get($investmentUserId);
-
-                $commitment = $userPrePeriodAccounting->commitment
-                    + $userTypeData->get('deposit', 0)
-                    - $userTypeData->get('withdraw', 0)
-                    + $userTypeData->get('profit', 0)
-                    + $userTypeData->get('expense', 0)
-                    + $userTypeData->get('transfer', 0);
-
-                $userTypeData->put('commitment', $commitment);
-
-                $investmentAccounting->put($investmentUserId,
-                    $this->investmentAccountingRepository->setUserPeriodValue($investmentUserId, $period, $userTypeData),
-                );
-            });
-
-        return $investmentAccounting;
     }
 }
